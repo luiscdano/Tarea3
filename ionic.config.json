@@ -1,0 +1,7 @@
+{
+  "name": "Tarea3Movil",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
