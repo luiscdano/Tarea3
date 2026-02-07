@@ -194,6 +194,22 @@
   margin: 10px;
 }
 
+.mobile-menu-toggle {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  display: none;
+}
+
+.mobile-menu-button {
+  --border-radius: 12px;
+  --padding-start: 0;
+  --padding-end: 0;
+  width: 42px;
+  height: 42px;
+}
+
 /* Responsive */
 
 @media (max-width: 600px) {
@@ -209,5 +225,15 @@
   .card-glass {
     margin: 0 14px 14px 14px;
     padding: 14px;
+  }
+}
+
+@media (max-width: 991px) {
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .page-title {
+    padding-left: 52px;
   }
 }

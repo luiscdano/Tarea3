@@ -1,5 +1,6 @@
 import {
   IonApp,
+  IonButton,
   IonContent,
   IonIcon,
   IonItem,
@@ -19,6 +20,7 @@ import { Redirect, Route } from "react-router-dom";
 import {
   homeOutline,
   addCircleOutline,
+  menuOutline,
   textOutline,
   gridOutline,
   videocamOutline,
@@ -58,6 +60,7 @@ const App: React.FC = () => {
         <IonSplitPane contentId="main">
 
           <IonMenu
+            menuId="main-menu"
             contentId="main"
             type="overlay"
             className="menu-modern"
@@ -97,6 +100,16 @@ const App: React.FC = () => {
           </IonMenu>
 
           <IonPage id="main">
+            <IonMenuToggle autoHide={false} menu="main-menu" className="mobile-menu-toggle">
+              <IonButton
+                className="mobile-menu-button"
+                fill="solid"
+                aria-label="Abrir menu"
+              >
+                <IonIcon icon={menuOutline} />
+              </IonButton>
+            </IonMenuToggle>
+
             <IonRouterOutlet id="main">
               <Route exact path="/">
                 <Redirect to="/home" />
