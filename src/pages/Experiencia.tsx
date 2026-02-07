@@ -5,7 +5,7 @@ import {
   IonText,
 } from "@ionic/react";
 
-const YT_URL = "https://youtu.be/W1XV5jrSDz4"; // link 
+const YT_URL = "https://www.youtube.com/watch?v=W1XV5jrSDz4"; // link 
 const YT_EMBED = "https://www.youtube.com/embed/W1XV5jrSDz4"; 
 
 const Experiencia: React.FC = () => {
