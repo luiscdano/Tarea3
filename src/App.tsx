@@ -1,53 +1,119 @@
-import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home';
+import {
+  IonApp,
+  IonContent,
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonMenu,
+  IonMenuToggle,
+  IonPage,
+  IonRouterOutlet,
+  IonSplitPane,
+  setupIonicReact,
+} from "@ionic/react";
 
-/* Core CSS required for Ionic components to work properly */
-import '@ionic/react/css/core.css';
+import { IonReactRouter } from "@ionic/react-router";
+import { Redirect, Route } from "react-router-dom";
 
-/* Basic CSS for apps built with Ionic */
-import '@ionic/react/css/normalize.css';
-import '@ionic/react/css/structure.css';
-import '@ionic/react/css/typography.css';
+import {
+  homeOutline,
+  addCircleOutline,
+  textOutline,
+  gridOutline,
+  videocamOutline,
+} from "ionicons/icons";
 
-/* Optional CSS utils that can be commented out */
-import '@ionic/react/css/padding.css';
-import '@ionic/react/css/float-elements.css';
-import '@ionic/react/css/text-alignment.css';
-import '@ionic/react/css/text-transformation.css';
-import '@ionic/react/css/flex-utils.css';
-import '@ionic/react/css/display.css';
+import Home from "./pages/Home";
+import Sumadora from "./pages/Sumadora";
+import Traductor from "./pages/Traductor";
+import Tabla from "./pages/Tabla";
+import Experiencia from "./pages/Experiencia";
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
+import "@ionic/react/css/core.css";
+import "@ionic/react/css/normalize.css";
+import "@ionic/react/css/structure.css";
+import "@ionic/react/css/typography.css";
+import "@ionic/react/css/padding.css";
+import "@ionic/react/css/flex-utils.css";
 
-/* import '@ionic/react/css/palettes/dark.always.css'; */
-/* import '@ionic/react/css/palettes/dark.class.css'; */
-import '@ionic/react/css/palettes/dark.system.css';
-
-/* Theme variables */
-import './theme/variables.css';
+import "./theme/variables.css";
+import "./theme/app.css";
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-);
+const appPages = [
+  { title: "Página Inicial", url: "/home", icon: homeOutline },
+  { title: "Sumadora", url: "/sumadora", icon: addCircleOutline },
+  { title: "Traductor", url: "/traductor", icon: textOutline },
+  { title: "Tabla", url: "/tabla", icon: gridOutline },
+  { title: "Experiencia", url: "/experiencia", icon: videocamOutline },
+];
+
+const App: React.FC = () => {
+  return (
+    <IonApp>
+      <IonReactRouter>
+
+        <IonSplitPane contentId="main">
+
+          <IonMenu
+            contentId="main"
+            type="overlay"
+            className="menu-modern"
+            style={{ width: "230px" }}
+          >
+            <IonContent className="menu-content">
+
+              <div className="menu-header">
+                <div className="menu-brand">
+                  <div className="menu-logo">T3</div>
+                  <div>
+                    <p className="menu-title">Tarea 3</p>
+                    <p className="menu-subtitle">Ionic + React • ITLA</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="menu-divider"/>
+
+              <IonList style={{ background:"transparent" }}>
+                {appPages.map((page) => (
+                  <IonMenuToggle key={page.url} autoHide={false}>
+                    <IonItem
+                      className="menu-item"
+                      routerLink={page.url}
+                      routerDirection="none"
+                      lines="none"
+                    >
+                      <IonIcon slot="start" icon={page.icon}/>
+                      <IonLabel>{page.title}</IonLabel>
+                    </IonItem>
+                  </IonMenuToggle>
+                ))}
+              </IonList>
+
+            </IonContent>
+          </IonMenu>
+
+          <IonPage id="main">
+            <IonRouterOutlet id="main">
+              <Route exact path="/">
+                <Redirect to="/home" />
+              </Route>
+
+              <Route exact path="/home" component={Home} />
+              <Route exact path="/sumadora" component={Sumadora} />
+              <Route exact path="/traductor" component={Traductor} />
+              <Route exact path="/tabla" component={Tabla} />
+              <Route exact path="/experiencia" component={Experiencia} />
+            </IonRouterOutlet>
+          </IonPage>
+
+        </IonSplitPane>
+      </IonReactRouter>
+    </IonApp>
+  );
+};
 
 export default App;
