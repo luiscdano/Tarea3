@@ -53,7 +53,7 @@ const appPages = [
 const App: React.FC = () => {
   return (
     <IonApp>
-      <IonReactRouter>
+      <IonReactRouter basename={import.meta.env.BASE_URL}>
 
         <IonSplitPane contentId="main">
 

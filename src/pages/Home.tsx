@@ -11,6 +11,8 @@ import {
 } from "ionicons/icons";
 
 const Home: React.FC = () => {
+  const profilePhotoSrc = `${import.meta.env.BASE_URL}assets/foto01.jpg`;
+
   return (
     <IonPage>
       <IonContent className="app-bg">
@@ -32,7 +34,7 @@ const Home: React.FC = () => {
               }}
             >
               <img
-                src="/assets/foto01.jpg"
+                src={profilePhotoSrc}
                 alt="Foto 2x2"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
